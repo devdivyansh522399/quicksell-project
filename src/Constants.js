@@ -65,11 +65,3 @@ import {
     },
   ];
 
-
-  export const indexs = [
-     "Backlog",
-     "Todo",
-     "In progress",
-     "Done",
-     "Cancelled"
-  ]

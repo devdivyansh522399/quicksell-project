@@ -1,5 +1,4 @@
 import axios from "axios";
-import { indexs } from "./Constants";
 export const fetchData = async () => {
   try {
     const response = await axios.get(
@@ -17,8 +16,8 @@ export const groupAndSortTickets = (tickets, groupBy, orderBy) => {
   try {
     let users = getUsers();
     let arr = [],
-      selectedData = [];
-
+    selectedData = [];
+    let user = false;
     if (groupBy === "status") {
       arr = ["Backlog", "Todo", "In progress", "Done", "Cancelled"];
       arr.forEach((element, index) => {
@@ -33,6 +32,7 @@ export const groupAndSortTickets = (tickets, groupBy, orderBy) => {
         });
       });
     } else if (groupBy === "user") {
+      user = true;
       users?.forEach((element, index) => {
         arr = tickets?.filter((items) => {
           return element.id === items.userId;
@@ -71,7 +71,7 @@ export const groupAndSortTickets = (tickets, groupBy, orderBy) => {
       });
     }
 
-    return { selectedData};
+    return { selectedData, user};
   } catch (error) {
     console.log("Error in selecting data");
   }

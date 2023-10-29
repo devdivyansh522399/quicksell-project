@@ -44,7 +44,7 @@ const DashNav = ({ group, order }) => {
   useEffect(() => {
     setData(() => groupAndSortTickets(tickets, group, order));
   }, [group, order, tickets]);
-
+  console.log(data.user);
   return (
   <section style={{background:"#f4f5f8",height:"90vh"}}>
     <div    style={{fontSize:"0.875rem",lineHeight:"1.25rem"}}>
@@ -60,7 +60,7 @@ const DashNav = ({ group, order }) => {
                   key={index}
                 />
                 {item[index].value.map((ele, index) => {
-                  return <Card item={ele} key={index}/>;
+                  return <Card item={ele} key={index} us={data?.user}/>;
                 })}
               </div>
             );

@@ -3,10 +3,10 @@ import "./Card.css";
 import { alphabeticColorCode } from "../../Color";
 import { getUsers } from "../../Action";
 import { Priority_Nav, Status_Nav } from "../../Constants";
-import { BsThreeDots } from "react-icons/bs";
+import { BsThreeDots, BsThreeDotsVertical } from "react-icons/bs";
 
 const users = getUsers();
-const Card = ({ item }) => {
+const Card = ({ item , us}) => {
   let icon1 = Status_Nav.find((ele) => item.status === ele.name);
   let icon2 = Priority_Nav.find((ele) => item.priority === ele.rank);
   
@@ -19,28 +19,32 @@ const Card = ({ item }) => {
         <span style={{ textTransform: "uppercase" }} className="color-grey">
           {item.id}
         </span>
-        <div
-          className="imageContainer relative"
-          style={{ width: "25px", height: "25px" }}
-        >
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: "50%",
-              background: alphabeticColorCode[user.name.toLowerCase()[0]],
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: "medium",
-              padding: "5px",
-              fontWeight: "600",
-            }}
+        {
+          !us ?
+          (<div
+            className="imageContainer relative"
+            style={{ width: "25px", height: "25px" }}
           >
-            <span style={{background:"none"}}>{user.name[0]}</span>
-          </div>
-          <div className="showStatus" style={{background : available}}></div>
-        </div>
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "50%",
+                background: alphabeticColorCode[user.name.toLowerCase()[0]],
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "medium",
+                padding: "5px",
+                fontWeight: "600",
+              }}
+            >
+              <span style={{background:"none"}}>{user.name[0]}</span>
+            </div>
+            <div className="showStatus" style={{background : available}}></div>
+          </div>) :
+          <BsThreeDotsVertical/>
+        }
       </div>
       <div
         className="cardTitle"
